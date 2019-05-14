@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block css %} {% endblock %}
+
+{% block main %}
+    <h2>Calcule EAN</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+        <button id="btnCalculer" name="btnCalculer" class="btn btn-success">Calculer</button>
+    {{ form_end(form) }}
+    <p>Clé du code EAN : {{ response }}</p>
+{% endblock %}
+
+{% block js %}{% endblock %}

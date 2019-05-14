@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bucket-List{% endblock %}</title>
+
+    {# on utilise asset() pour générer le bon chemin
+     vers les fichiers .css, .js ou img... #}
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    {% block css %}{% endblock %}
+</head>
+<body>
+
+<div class="container">
+    <main>
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="{{ path('home') }}">Calcul EAN</a>
+        </nav>
+        {% block main %}{% endblock %}
+    </main>
+    <footer>
+        <hr>
+        <p class="text-center">{{ "now"|date("Y") }} CalculEAN</p>
+    </footer>
+</div>
+
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+{% block js %}{% endblock %}
+</body>
+</html>
