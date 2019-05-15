@@ -6,11 +6,26 @@
 
 {% block main %}
     <h2>Calcule EAN</h2>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-        <button id="btnCalculer" name="btnCalculer" class="btn btn-success">Calculer</button>
-    {{ form_end(form) }}
-    <p>Clé du code EAN : {{ response }}</p>
+    <input type="text" id="textEan" name="textEan" required="required" pattern="[0-9]{12}" />
+    <button id="btn"  class="btn btn-success">Calculer</button>
+    <p id="result"></p>
 {% endblock %}
 
-{% block js %}{% endblock %}
+{% block js %}
+    <script type="text/javascript">
+        $('#btn').click( function request () {
+            alert("entre dans la fonction");
+            let ean = $("#textEan").val();
+            $.ajax({
+                url: '{{ path('response') }}',
+                type: 'GET',
+                data:{id: ean},
+                success: function (data) {
+                    $("#result").text("Clé du code EAN : "+ean + data);
+                    alert(ean+data);
+                    console.log(ean+data);
+                }
+            })
+        });
+    </script>
+{% endblock %}
