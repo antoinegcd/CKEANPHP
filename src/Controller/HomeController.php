@@ -29,16 +29,15 @@ class HomeController extends Controller
             $somme = 0;
             for ($i = 0; $i < 11; $i++ ){
                 if (($i+1)%2 == 0){
-                    $somme += ((int)$ean[$i])*3;
+                    $somme = $somme + ((int)$ean[$i])*3;
                 }else{
-                    $somme += (int)$ean[$i];
+                    $somme = $somme + (int)$ean[$i];
                 }
             }
-            $reste = $somme % 10;
-            if ($reste == 0){
+            if ($somme % 10 == 0){
                 $keyResponse = 0;
             }else{
-                $keyResponse = 10-($reste);
+                $keyResponse = 10 - ($somme % 10);
             }
             return new JsonResponse(json_encode($keyResponse));
         }

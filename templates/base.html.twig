@@ -8,7 +8,9 @@
     <h2>Calcule EAN</h2>
     <input type="text" id="textEan" name="textEan" required="required" pattern="[0-9]{12}" />
     <button id="btn"  class="btn btn-success">Calculer</button>
-    <p id="result"></p>
+    <p id="code"></p>
+    <p id="key"></p>
+    <p id="codeWithKey"></p>
 {% endblock %}
 
 {% block js %}
@@ -19,9 +21,11 @@
             $.ajax({
                 url: '{{ path('response') }}',
                 type: 'GET',
-                data:{id: ean},
+                data:{ean: ean},
                 success: function (data) {
-                    $("#result").text("Clé du code EAN : "+ean + data);
+                    $("#code").text("Code EAN : "+ean);
+                    $("#key").text("Clé du code EAN : "+data);
+                    $("#codeWithKey").text("Code EAN avec la clé : "+ean+data);
                     alert(ean+data);
                     console.log(ean+data);
                 }
